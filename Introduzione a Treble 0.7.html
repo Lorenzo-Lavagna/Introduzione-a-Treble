@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guida Introduttiva a Treble</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: #121212;
+      color: #ffffffe6;
+    }
+    h1, h2, h3 {
+      color: #08b8af;
+    }
+    section {
+      background: #1e1e1e;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .video-wrapper {
+      display: flex;
+      justify-content: left;
+      margin: 10px 0;
+    }
+    .video-wrapper iframe {
+      width: 560px;
+      height: 315px;
+      max-width: 100%;
+    }
+    ul, ol {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guida Introduttiva a Treble</h1>
+
+  <section>
+    <h2>Introduzione</h2>
+    <p>Treble è un software che permette di simulare il comportamento del suono all'interno di uno spazio. Questo significa che puoi prevedere come "suonerà" un ambiente prima ancora che venga costruito o modificato.</p>
+    <p>Questa guida è pensata per chi si avvicina per la prima volta a Treble. Seguendola passo dopo passo, dovresti essere in grado di impostare una simulazione semplice.</p>
+    <p>Ogni sezione è accompagnata da uno o più video tutorial: durano in media 1-2 minuti e ti mostrano visivamente cosa fare in ogni fase.</p>
+  </section>
+
+  <section>
+    <h2>Perché usare Treble?</h2>
+    <p>Ogni ambiente è diverso e non esistono soluzioni universali per l'acustica. Treble ti permette di simulare scenari realistici, di ascoltare i risultati (auralizzazione) e di individuare problemi prima di realizzare l'intervento.</p>
+  </section>
+
+  <section>
+    <h2>Come funziona Treble?</h2>
+    <ul>
+      <li>La simulazione acustica in Treble si basa su due metodi:</li>
+      <li><strong>Wave-based (DGFEM)</strong>: calcola in modo estremamente preciso il comportamento fisico delle onde sonore. È utile per ambienti piccoli o per frequenze basse, ma richiede molta potenza di calcolo.</li>
+      <li><strong>Raytracing (ISM + Radiosity)</strong>: simula il suono come se fossero raggi che rimbalzano sulle superfici. È più rapido ed efficiente nei grandi ambienti e durante le fasi preliminari del progetto.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Come si usa Treble - I passaggi principali</h2>
+    <section>
+      <h3>1. Preparazione della geometria</h3>
+      <p>Assicurati che la geometria sia perfettamente chiusa, ovvero che le superfici esterne non abbiano buchi. Evita dettagli troppo piccoli (sotto i 50 cm) e suddividi il modello in livelli per facilitare la gestione dei materiali. La qualità della geometria influenza direttamente la qualità della simulazione.</p>
+      <p>Ecco due esempi che mostrano il corretto livello di dettaglio di un modello:</p>
+    <div>
+        <img src="condividere.png" alt="Condividere" style="max-width: 48%;" />
+        <img src="basilica.png" alt="Basilica" style="max-width: 48%;" />
+    </div>
+    </section>
+    <section>
+      <h3>2. Caricamento del modello</h3>
+      <p>Carica il tuo modello su Treble accedendo a <a href="https://www.treble.tech/" target="_blank">treble.tech</a>. Puoi usare file .dxf, .obj e 3dm, eoppure plugin dedicati (es. SketchUp). Ricorda che ogni modifica alla geometria comporta il ri-upload e la riapplicazione dei materiali.</p>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/E3QVt5FO8qc" allowfullscreen></iframe></div>
+    </section>
+    <section>
+      <h3>3. Assegnazione dei materiali</h3>
+      <p>Assegna i materiali alle superfici scegliendoli dalla libreria oppure creandone di nuovi. Lo scattering (diffusione del suono) va impostato a parte, in base alla scabrezza e alla geometria delle superfici.</p>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/KvPkUla_zhs" allowfullscreen></iframe></div>
+      <p>Se il materiale che cerchi non è presente, puoi crearne uno personalizzato:</p>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/MjrvjO0izPA" allowfullscreen></iframe></div>
+    </section>
+    <section>
+      <h3>4. Collocazione delle sorgenti</h3>
+      <p>Le sorgenti rappresentano i punti da cui parte il suono. Puoi definirne l’emissività (intensità) e la direttività (in che direzione emettono). Per simulazioni oggettive, ovvero per il calcolo dei parametri acustici, si usa una sorgente omnidirezionale. Per simulazioni soggettive, ovvero le auralizzazioni, usa sorgenti che rispecchino le sorgenti sonore reali.</p>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/3kdN-pqlvD4" allowfullscreen></iframe></div>
+    </section>
+    <section>
+      <h3>5. Collocazione dei ricevitori</h3>
+      <p>I ricevitori sono i punti dove "ascolti" i risultati della simulazione. Puoi usarli come:</p>
+      <ul>
+        <li><strong>Griglia di ricevitori</strong>: per ottenere una mappa spaziale dei risultati acustici.</li>
+        <li><strong>Ricevitore puntuale</strong>: per auralizzazioni. Si colloca nello stesso modo della griglia dei ricevitori, ma richiede solo le coordinate.</li>
+      </ul>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SDsfeC2m3_o" allowfullscreen></iframe></div>
+    </section>
+    <section>
+      <h3>6. Impostazione della simulazione</h3>
+      <p>Treble offre due metodi di simulazione. Il <strong>raytracing</strong> è perfetto per l’esplorazione progettuale. Il <strong>wave-based</strong> va riservato alle fasi finali per la sua precisione. Ogni utente ha a disposizione fino a 5 ore di simulazioni, corrispondenti a 5 token.</p>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/JW_8pNYXNjE" allowfullscreen></iframe></div>
+    </section>
+    <section>
+      <h3>7. Visualizzazione dei risultati</h3>
+      <p>I principali risultati includono che possono interessarvi per il vostro progetto sono:</p>
+      <ul>
+        <li><strong>Tempo di riverbero (RT)</strong></li>
+        <li><strong>Livelli di pressione sonora</strong></li>
+        <li><strong>Indici di chiarezza e intelligibilità</strong></li>
+      </ul>
+      <p>Confronta questi valori con gli obiettivi del progetto per valutare la qualità acustica dello spazio.</p>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/FlOJih7qb7M" allowfullscreen></iframe></div>
+    </section>
+    <section>
+      <h3>8. Auralizzazione</h3>
+      <p>Treble permette di ascoltare il risultato della simulazione. È utile per comunicare con clienti e stakeholder, ma anche per prendere decisioni progettuali più consapevoli.</p>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/iNHFkWxylZY" allowfullscreen></iframe></div>
+    </section>
+  </section>
+
+  <section>
+    <h2>Video Tutorial</h2>
+    <p>Qui trovi tutti i video della playlist ufficiale:</p>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/videoseries?list=PL_OrBfOSE-nAZR2aRNFcNkjApX23wm6lo" allowfullscreen></iframe></div>
+  </section>
+
+  <section>
+    <h2>Serve aiuto?</h2>
+    <ul>
+      <li><a href="https://docs.treble.tech/" target="_blank">Vai alla documentazione ufficiale</a></li>
+      <li><a href="https://www.youtube.com/@TrebleTechnologies" target="_blank">Guarda il canale YouTube</a></li>
+      <li>Scrivi nella chat di supporto su Treble</li>
+      <li>Oppure manda una mail a: <a href="mailto:lorenzo.lavagna@polito.it">lorenzo.lavagna@polito.it</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <p>Grazie per l'attenzione e buon lavoro con Treble!</p>
+  </section>
+</body>
+</html>
